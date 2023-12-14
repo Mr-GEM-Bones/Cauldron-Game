@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ciel6wm3uv1b0"]
+
+[ext_resource type="Script" path="res://Scenes/Items/Ingredient.gd" id="1_hrubv"]
+[ext_resource type="Texture2D" uid="uid://bt7fteqbvt0uk" path="res://Assets/Sprites/Wolf_Teeth.png" id="2_8scke"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_su10b"]
+size = Vector2(12, 23)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xyvtn"]
+radius = 7.0
+
+[node name="SlimeTeeth" type="RigidBody2D"]
+position = Vector2(280, 190)
+input_pickable = true
+script = ExtResource("1_hrubv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 1.5)
+shape = SubResource("RectangleShape2D_su10b")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -9)
+shape = SubResource("CircleShape2D_xyvtn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_8scke")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
