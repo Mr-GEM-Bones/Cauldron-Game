@@ -1,9 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://dx4qvcu851jd1"]
+[gd_scene load_steps=15 format=3 uid="uid://dx4qvcu851jd1"]
 
+[ext_resource type="Script" path="res://Scenes/BackLab/Cauldron.gd" id="1_j5aqn"]
 [ext_resource type="PackedScene" uid="uid://csy6ji4xjse" path="res://Scenes/Items/HealthPotion.tscn" id="1_nuxuu"]
 [ext_resource type="PackedScene" uid="uid://rx2k8x7kuakl" path="res://Scenes/Items/ManaPotion.tscn" id="2_sx7u1"]
 [ext_resource type="PackedScene" uid="uid://ciel6wm3uv1b0" path="res://Scenes/Items/SlimeTeeth.tscn" id="3_75eo7"]
 [ext_resource type="PackedScene" uid="uid://dvh6bqua7e4df" path="res://Scenes/Items/PearlofZeus.tscn" id="4_tlufy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gdbqi"]
+size = Vector2(20, 201)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1dhk"]
+size = Vector2(20, 203)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xtbvx"]
+size = Vector2(186, 20)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xslb4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8gmk"]
+size = Vector2(144, 145)
+
+[sub_resource type="CurveTexture" id="CurveTexture_8sncm"]
 
 [sub_resource type="Gradient" id="Gradient_15e3r"]
 offsets = PackedFloat32Array(0, 0.00598802)
@@ -15,6 +32,38 @@ gradient = SubResource("Gradient_15e3r")
 size = Vector2(1077, 72)
 
 [node name="BackLab" type="Node2D"]
+
+[node name="Cauldron" type="CharacterBody2D" parent="."]
+position = Vector2(742, 435)
+script = ExtResource("1_j5aqn")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cauldron"]
+position = Vector2(83, 0.5)
+shape = SubResource("RectangleShape2D_gdbqi")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Cauldron"]
+position = Vector2(-83, -0.5)
+shape = SubResource("RectangleShape2D_p1dhk")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Cauldron"]
+position = Vector2(1, 91)
+shape = SubResource("RectangleShape2D_xtbvx")
+
+[node name="Sprite2D" type="Sprite2D" parent="Cauldron"]
+scale = Vector2(186, 203)
+texture = SubResource("CanvasTexture_xslb4")
+
+[node name="Area2D" type="Area2D" parent="Cauldron"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cauldron/Area2D"]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_q8gmk")
+
+[node name="Sprite2D" type="Sprite2D" parent="Cauldron/Area2D"]
+position = Vector2(0.500015, 6.50002)
+scale = Vector2(0.566406, 145)
+texture = SubResource("CurveTexture_8sncm")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(316, 576)
@@ -29,95 +78,99 @@ texture = SubResource("GradientTexture1D_v5b27")
 position = Vector2(264.5, 0)
 shape = SubResource("RectangleShape2D_7sbm3")
 
-[node name="HealthPotion" parent="." instance=ExtResource("1_nuxuu")]
-position = Vector2(429, 267)
+[node name="Items" type="Node" parent="."]
 
-[node name="HealthPotion2" parent="." instance=ExtResource("1_nuxuu")]
-position = Vector2(360, 87)
+[node name="PearlOfZeus" parent="Items" instance=ExtResource("4_tlufy")]
+position = Vector2(574, 153)
 
-[node name="HealthPotion3" parent="." instance=ExtResource("1_nuxuu")]
-position = Vector2(313, 283)
+[node name="PearlOfZeus2" parent="Items" instance=ExtResource("4_tlufy")]
+position = Vector2(574, 153)
 
-[node name="HealthPotion4" parent="." instance=ExtResource("1_nuxuu")]
-position = Vector2(365, 204)
+[node name="PearlOfZeus3" parent="Items" instance=ExtResource("4_tlufy")]
+position = Vector2(574, 153)
 
-[node name="HealthPotion5" parent="." instance=ExtResource("1_nuxuu")]
-position = Vector2(333, 142)
+[node name="PearlOfZeus4" parent="Items" instance=ExtResource("4_tlufy")]
+position = Vector2(574, 153)
 
-[node name="HealthPotion6" parent="." instance=ExtResource("1_nuxuu")]
-position = Vector2(476, 138)
+[node name="PearlOfZeus5" parent="Items" instance=ExtResource("4_tlufy")]
+position = Vector2(574, 153)
 
-[node name="ManaPotion" parent="." instance=ExtResource("2_sx7u1")]
-position = Vector2(412, 147)
+[node name="PearlOfZeus6" parent="Items" instance=ExtResource("4_tlufy")]
+position = Vector2(574, 153)
 
-[node name="ManaPotion2" parent="." instance=ExtResource("2_sx7u1")]
+[node name="PearlOfZeus7" parent="Items" instance=ExtResource("4_tlufy")]
+position = Vector2(574, 153)
+
+[node name="PearlOfZeus8" parent="Items" instance=ExtResource("4_tlufy")]
+position = Vector2(574, 153)
+
+[node name="PearlOfZeus9" parent="Items" instance=ExtResource("4_tlufy")]
+position = Vector2(574, 153)
+
+[node name="PearlOfZeus10" parent="Items" instance=ExtResource("4_tlufy")]
+position = Vector2(407, 102)
+
+[node name="PearlOfZeus11" parent="Items" instance=ExtResource("4_tlufy")]
+position = Vector2(407, 102)
+
+[node name="PearlOfZeus12" parent="Items" instance=ExtResource("4_tlufy")]
+position = Vector2(407, 102)
+
+[node name="PearlOfZeus13" parent="Items" instance=ExtResource("4_tlufy")]
+position = Vector2(407, 102)
+
+[node name="ManaPotion2" parent="Items" instance=ExtResource("2_sx7u1")]
 position = Vector2(496, 370)
 
-[node name="ManaPotion3" parent="." instance=ExtResource("2_sx7u1")]
+[node name="ManaPotion3" parent="Items" instance=ExtResource("2_sx7u1")]
 position = Vector2(452, 402)
 
-[node name="ManaPotion4" parent="." instance=ExtResource("2_sx7u1")]
+[node name="ManaPotion4" parent="Items" instance=ExtResource("2_sx7u1")]
 position = Vector2(328, 358)
 
-[node name="ManaPotion5" parent="." instance=ExtResource("2_sx7u1")]
+[node name="ManaPotion5" parent="Items" instance=ExtResource("2_sx7u1")]
 position = Vector2(512, 225)
 
-[node name="ManaPotion6" parent="." instance=ExtResource("2_sx7u1")]
+[node name="ManaPotion6" parent="Items" instance=ExtResource("2_sx7u1")]
 position = Vector2(431, 332)
 
-[node name="ManaPotion7" parent="." instance=ExtResource("2_sx7u1")]
+[node name="ManaPotion7" parent="Items" instance=ExtResource("2_sx7u1")]
 position = Vector2(441, 217)
 
-[node name="SlimeTeeth" parent="." instance=ExtResource("3_75eo7")]
+[node name="SlimeTeeth" parent="Items" instance=ExtResource("3_75eo7")]
 
-[node name="SlimeTeeth2" parent="." instance=ExtResource("3_75eo7")]
+[node name="SlimeTeeth2" parent="Items" instance=ExtResource("3_75eo7")]
 
-[node name="SlimeTeeth3" parent="." instance=ExtResource("3_75eo7")]
+[node name="SlimeTeeth3" parent="Items" instance=ExtResource("3_75eo7")]
 
-[node name="SlimeTeeth4" parent="." instance=ExtResource("3_75eo7")]
+[node name="SlimeTeeth4" parent="Items" instance=ExtResource("3_75eo7")]
 
-[node name="SlimeTeeth5" parent="." instance=ExtResource("3_75eo7")]
+[node name="SlimeTeeth5" parent="Items" instance=ExtResource("3_75eo7")]
 
-[node name="SlimeTeeth6" parent="." instance=ExtResource("3_75eo7")]
+[node name="SlimeTeeth6" parent="Items" instance=ExtResource("3_75eo7")]
 
-[node name="SlimeTeeth7" parent="." instance=ExtResource("4_tlufy")]
+[node name="SlimeTeeth7" parent="Items" instance=ExtResource("4_tlufy")]
 position = Vector2(532, 166)
 
-[node name="PearlOfZeus" parent="." instance=ExtResource("4_tlufy")]
-position = Vector2(574, 153)
+[node name="HealthPotion" parent="Items" instance=ExtResource("1_nuxuu")]
+position = Vector2(429, 267)
 
-[node name="PearlOfZeus2" parent="." instance=ExtResource("4_tlufy")]
-position = Vector2(574, 153)
+[node name="HealthPotion2" parent="Items" instance=ExtResource("1_nuxuu")]
+position = Vector2(360, 87)
 
-[node name="PearlOfZeus3" parent="." instance=ExtResource("4_tlufy")]
-position = Vector2(574, 153)
+[node name="HealthPotion3" parent="Items" instance=ExtResource("1_nuxuu")]
+position = Vector2(313, 283)
 
-[node name="PearlOfZeus4" parent="." instance=ExtResource("4_tlufy")]
-position = Vector2(574, 153)
+[node name="HealthPotion4" parent="Items" instance=ExtResource("1_nuxuu")]
+position = Vector2(365, 204)
 
-[node name="PearlOfZeus5" parent="." instance=ExtResource("4_tlufy")]
-position = Vector2(574, 153)
+[node name="HealthPotion5" parent="Items" instance=ExtResource("1_nuxuu")]
+position = Vector2(333, 142)
 
-[node name="PearlOfZeus6" parent="." instance=ExtResource("4_tlufy")]
-position = Vector2(574, 153)
+[node name="HealthPotion6" parent="Items" instance=ExtResource("1_nuxuu")]
+position = Vector2(476, 138)
 
-[node name="PearlOfZeus7" parent="." instance=ExtResource("4_tlufy")]
-position = Vector2(574, 153)
+[node name="ManaPotion" parent="Items" instance=ExtResource("2_sx7u1")]
+position = Vector2(412, 147)
 
-[node name="PearlOfZeus8" parent="." instance=ExtResource("4_tlufy")]
-position = Vector2(574, 153)
-
-[node name="PearlOfZeus9" parent="." instance=ExtResource("4_tlufy")]
-position = Vector2(574, 153)
-
-[node name="PearlOfZeus10" parent="." instance=ExtResource("4_tlufy")]
-position = Vector2(407, 102)
-
-[node name="PearlOfZeus11" parent="." instance=ExtResource("4_tlufy")]
-position = Vector2(407, 102)
-
-[node name="PearlOfZeus12" parent="." instance=ExtResource("4_tlufy")]
-position = Vector2(407, 102)
-
-[node name="PearlOfZeus13" parent="." instance=ExtResource("4_tlufy")]
-position = Vector2(407, 102)
+[connection signal="body_entered" from="Cauldron/Area2D" to="Cauldron" method="_on_area_2d_body_entered"]

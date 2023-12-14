@@ -13,6 +13,7 @@ radius = 7.0
 position = Vector2(280, 190)
 input_pickable = true
 script = ExtResource("1_hrubv")
+ingredient = "slime"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 1.5)
