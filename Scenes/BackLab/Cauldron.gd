@@ -10,6 +10,22 @@ extends CharacterBody2D
 var cauldron_content = []
 var recipe = ["pearl","slime"]
 
+var potion_delay_timer = 0
+var potion_start_time = 1
+
+func _process(delta):
+	
+	if potion_delay_timer>=potion_start_time:
+		#Start recepi Check
+		var recipe_index = CheckRecipe(recipe)
+		if recipe_index.size() != 0:
+			#proceed to produce recipe.
+			print("index: ", recipe_index)
+		
+		potion_delay_timer = 0 
+	else: 
+		potion_delay_timer += delta
+	
 
 func _physics_process(delta):
 	pass
@@ -39,7 +55,16 @@ func _on_area_2d_body_entered(body):
 
 
 func CheckRecipe(_recipe):
+	#This function returns array of index if _recipe is inside the cauldron and array of size 0 if not.
+	#var is_recipe_in = true
+	var recipe_index = [] #array to hold the index of all the recipe in the cauldron.
 	
+	#cycle through the entire recipe to check if the recepi is inside the cauldron.
 	for i in _recipe:
-		cauldron_content.find(i)
-	return false
+		var ing = cauldron_content.find(i)
+		if ing == -1:
+			recipe_index.clear()
+			break
+		recipe_index.append(ing)
+	
+	return recipe_index
