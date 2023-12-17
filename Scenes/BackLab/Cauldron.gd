@@ -9,19 +9,24 @@ extends CharacterBody2D
 
 var cauldron_content = []
 var recipe = ["pearl","slime"]
+@onready var Recipes = $Recipes
 
 var potion_delay_timer = 0
 var potion_start_time = 1
 
+func _ready():
+	pass#Recipes = $Recipes
+
 func _process(delta):
 	
 	if potion_delay_timer>=potion_start_time:
-		#Start recepi Check
-		var recipe_index = CheckRecipe(recipe)
-		if recipe_index.size() != 0:
-			#proceed to produce recipe.
-			print("index: ", recipe_index)
-		
+		#Start recipe Check
+		for r_index in Recipes._recipes:
+			var recipe_index = CheckRecipe(Recipes.get_recipe(r_index))
+			if recipe_index.size() != 0:
+				#proceed to produce recipe.
+				print("index: ", recipe_index, "potion: ", r_index)
+				StartPotion(r_index)
 		potion_delay_timer = 0 
 	else: 
 		potion_delay_timer += delta
@@ -53,6 +58,15 @@ func _on_area_2d_body_entered(body):
 	body.queue_free()
 	print(cauldron_content)
 
+
+func StartPotion(potion_index):
+	var _potion = load(Recipes._potions[potion_index])
+	var potion = _potion.instantiate()
+	
+	potion.rotation += randf_range(-PI / 4, PI / 4)
+	potion.global_position=Vector2(366,181)
+	potion.apply_impulse(Vector2.UP*900)
+	get_tree().get_root().add_child(potion)
 
 func CheckRecipe(_recipe):
 	#This function returns array of index if _recipe is inside the cauldron and array of size 0 if not.

@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://dx4qvcu851jd1"]
+[gd_scene load_steps=16 format=3 uid="uid://dx4qvcu851jd1"]
 
 [ext_resource type="Script" path="res://Scenes/BackLab/Cauldron.gd" id="1_j5aqn"]
 [ext_resource type="PackedScene" uid="uid://csy6ji4xjse" path="res://Scenes/Items/HealthPotion.tscn" id="1_nuxuu"]
 [ext_resource type="PackedScene" uid="uid://rx2k8x7kuakl" path="res://Scenes/Items/ManaPotion.tscn" id="2_sx7u1"]
 [ext_resource type="PackedScene" uid="uid://ciel6wm3uv1b0" path="res://Scenes/Items/SlimeTeeth.tscn" id="3_75eo7"]
 [ext_resource type="PackedScene" uid="uid://dvh6bqua7e4df" path="res://Scenes/Items/PearlofZeus.tscn" id="4_tlufy"]
+[ext_resource type="Script" path="res://Scenes/BackLab/Recipes.gd" id="6_aupei"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gdbqi"]
 size = Vector2(20, 201)
@@ -64,6 +65,9 @@ shape = SubResource("RectangleShape2D_q8gmk")
 position = Vector2(0.500015, 6.50002)
 scale = Vector2(0.566406, 145)
 texture = SubResource("CurveTexture_8sncm")
+
+[node name="Recipes" type="Node" parent="Cauldron"]
+script = ExtResource("6_aupei")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(316, 576)
@@ -156,7 +160,7 @@ position = Vector2(532, 166)
 position = Vector2(429, 267)
 
 [node name="HealthPotion2" parent="Items" instance=ExtResource("1_nuxuu")]
-position = Vector2(360, 87)
+position = Vector2(366, 81)
 
 [node name="HealthPotion3" parent="Items" instance=ExtResource("1_nuxuu")]
 position = Vector2(313, 283)
