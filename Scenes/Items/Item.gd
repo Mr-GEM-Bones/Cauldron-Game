@@ -5,6 +5,7 @@ extends RigidBody2D
 @export var ingredient = "A"
 
 var _is_held = false
+var _can_cauldron = true  #makes it able to interact with cauldron.
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

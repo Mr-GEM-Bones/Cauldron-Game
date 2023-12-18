@@ -54,19 +54,23 @@ func _physics_process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	cauldron_content.append(body.ingredient)
-	body.queue_free()
-	print(cauldron_content)
+	if body._can_cauldron:
+		cauldron_content.append(body.ingredient)
+		body.queue_free()
+		print(cauldron_content)
 
 
 func StartPotion(potion_index):
 	var _potion = load(Recipes._potions[potion_index])
 	var potion = _potion.instantiate()
 	
-	potion.rotation += randf_range(-PI / 4, PI / 4)
-	potion.global_position=Vector2(366,181)
-	potion.apply_impulse(Vector2.UP*900)
+	var angle = randf_range(-PI / 5, PI / 5) - PI/2
+	var aim = Vector2(cos(angle),sin(angle))
+	potion.global_position = position
+	print("rotation", potion.rotation, "aim ", aim)
+	potion.apply_impulse(aim * 900)
 	get_tree().get_root().add_child(potion)
+	potion.just_produced()
 
 func CheckRecipe(_recipe):
 	#This function returns array of index if _recipe is inside the cauldron and array of size 0 if not.

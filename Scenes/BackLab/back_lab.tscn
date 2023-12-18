@@ -35,7 +35,9 @@ size = Vector2(1077, 72)
 [node name="BackLab" type="Node2D"]
 
 [node name="Cauldron" type="CharacterBody2D" parent="."]
-position = Vector2(742, 435)
+position = Vector2(745, 362)
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_j5aqn")
 metadata/_edit_group_ = true
 
@@ -56,6 +58,8 @@ scale = Vector2(186, 203)
 texture = SubResource("CanvasTexture_xslb4")
 
 [node name="Area2D" type="Area2D" parent="Cauldron"]
+collision_layer = 4
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cauldron/Area2D"]
 position = Vector2(0, 6.5)
@@ -69,16 +73,18 @@ texture = SubResource("CurveTexture_8sncm")
 [node name="Recipes" type="Node" parent="Cauldron"]
 script = ExtResource("6_aupei")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(316, 576)
+collision_layer = 3
+collision_mask = 3
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
 position = Vector2(263.5, 0)
 scale = Vector2(4.19922, 72)
 texture = SubResource("GradientTexture1D_v5b27")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2(264.5, 0)
 shape = SubResource("RectangleShape2D_7sbm3")
 

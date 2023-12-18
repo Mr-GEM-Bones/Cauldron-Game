@@ -12,6 +12,7 @@ var _potions = {
 func _ready():
 	pass # Replace with function body.
 	#Add the setup for the recipes here.
+	
 
 
 func get_recipe(index_value):
