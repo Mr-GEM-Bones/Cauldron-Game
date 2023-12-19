@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0wn8n02paano"]
+
+[ext_resource type="Script" path="res://Scenes/overworld/overworld.gd" id="1_3jlej"]
+[ext_resource type="Texture2D" uid="uid://dfpttwf2n7ocy" path="res://Scenes/overworld/assets/temp_background.png" id="1_m3l8x"]
+[ext_resource type="PackedScene" uid="uid://nokuyq8rvsc6" path="res://entities/wizard/wizard.tscn" id="3_58bl2"]
+
+[node name="Overworld" type="Node"]
+script = ExtResource("1_3jlej")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1, 0)
+motion_mirroring = Vector2(1024, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(512, 128)
+texture = ExtResource("1_m3l8x")
+
+[node name="Wizard" parent="." instance=ExtResource("3_58bl2")]
+position = Vector2(162, 217)
