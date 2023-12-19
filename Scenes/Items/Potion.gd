@@ -16,7 +16,7 @@ func just_produced():
 	#this function makes sure that the potion does not interact with the cauldron.
 	_can_cauldron = false
 	collision_mask = 3
-	await get_tree().create_timer(4.0).timeout
+	await get_tree().create_timer(_just_produced_timer).timeout
 	available()
 
 func available():

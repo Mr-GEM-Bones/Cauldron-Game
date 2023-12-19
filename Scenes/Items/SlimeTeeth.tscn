@@ -1,13 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://ciel6wm3uv1b0"]
+[gd_scene load_steps=7 format=3 uid="uid://ciel6wm3uv1b0"]
 
 [ext_resource type="Script" path="res://Scenes/Items/Ingredient.gd" id="1_hrubv"]
-[ext_resource type="Texture2D" uid="uid://bt7fteqbvt0uk" path="res://Assets/Sprites/Wolf_Teeth.png" id="2_8scke"]
+[ext_resource type="Texture2D" uid="uid://bxly3gwxe1pv5" path="res://Assets/Sprites/potiontestingredients.png" id="2_mlu11"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu6we"]
+atlas = ExtResource("2_mlu11")
+region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_su10b"]
-size = Vector2(12, 23)
+size = Vector2(9, 23)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xyvtn"]
-radius = 7.0
+radius = 11.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bg3d0"]
+size = Vector2(12, 8)
 
 [node name="SlimeTeeth" type="RigidBody2D"]
 position = Vector2(280, 190)
@@ -16,16 +23,19 @@ input_pickable = true
 script = ExtResource("1_hrubv")
 ingredient = "slime"
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_uu6we")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 1.5)
+position = Vector2(-0.5, 3)
 shape = SubResource("RectangleShape2D_su10b")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-2, -9)
+position = Vector2(1, -2)
 shape = SubResource("CircleShape2D_xyvtn")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_8scke")
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -11)
+shape = SubResource("RectangleShape2D_bg3d0")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

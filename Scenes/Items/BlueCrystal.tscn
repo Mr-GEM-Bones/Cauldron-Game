@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://odbu85116l13"]
+
+[ext_resource type="Script" path="res://Scenes/Items/Ingredient.gd" id="1_7cmpe"]
+[ext_resource type="Texture2D" uid="uid://bxly3gwxe1pv5" path="res://Assets/Sprites/potiontestingredients.png" id="2_kksl5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu6we"]
+atlas = ExtResource("2_kksl5")
+region = Rect2(160, 0, 32, 32)
+
+[node name="BlueCrystal" type="RigidBody2D"]
+position = Vector2(280, 190)
+collision_mask = 7
+input_pickable = true
+script = ExtResource("1_7cmpe")
+ingredient = "bluecrystal"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_uu6we")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-1, -16, 7, -10, 16, -6, 8, 13, 4, 16, -8, 16, -13, 11, -14, -12)
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -20,13 +20,7 @@ func _ready():
 func _process(delta):
 	
 	if potion_delay_timer>=potion_start_time:
-		#Start recipe Check
-		for r_index in Recipes._recipes:
-			var recipe_index = CheckRecipe(Recipes.get_recipe(r_index))
-			if recipe_index.size() != 0:
-				#proceed to produce recipe.
-				print("index: ", recipe_index, "potion: ", r_index)
-				StartPotion(r_index)
+		CheckContents()
 		potion_delay_timer = 0 
 	else: 
 		potion_delay_timer += delta
@@ -54,23 +48,41 @@ func _physics_process(delta):
 
 
 func _on_area_2d_body_entered(body):
+	#checks if the item can be used in the Cauldron. (newly produced potions should not.)
 	if body._can_cauldron:
+		#Add ingredient to the Cauldron.
 		cauldron_content.append(body.ingredient)
+		#make ingredient disapear.
 		body.queue_free()
+		#reset timer
+		potion_delay_timer = 0
 		print(cauldron_content)
 
+func CheckContents():
+	#Start recipe Check
+	for r_index in Recipes._recipes:
+		var recipe_index = CheckRecipe(Recipes.get_recipe(r_index))
+		#Check if a recepi has been found.
+		if recipe_index.size() != 0:
+			#proceed to produce recipe.
+			print("index: ", recipe_index, "potion: ", r_index)
+			StartPotion(r_index)
 
 func StartPotion(potion_index):
 	var _potion = load(Recipes._potions[potion_index])
 	var potion = _potion.instantiate()
 	
+	#randomly asign an angle to pop out the potion.
 	var angle = randf_range(-PI / 5, PI / 5) - PI/2
 	var aim = Vector2(cos(angle),sin(angle))
 	potion.global_position = position
-	print("rotation", potion.rotation, "aim ", aim)
+	#potion will poop out of the cauldron.
 	potion.apply_impulse(aim * 900)
 	get_tree().get_root().add_child(potion)
+	#make sure potion is tagged as just produced.
 	potion.just_produced()
+	#clears the contents of the cauldron.
+	cauldron_content.clear
 
 func CheckRecipe(_recipe):
 	#This function returns array of index if _recipe is inside the cauldron and array of size 0 if not.

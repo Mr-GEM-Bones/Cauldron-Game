@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/BackLab/Cauldron.gd" id="1_j5aqn"]
 [ext_resource type="PackedScene" uid="uid://csy6ji4xjse" path="res://Scenes/Items/HealthPotion.tscn" id="1_nuxuu"]
+[ext_resource type="Texture2D" uid="uid://b3sx6273kbxbp" path="res://Assets/Sprites/cauldronspritemain.png" id="2_b6lft"]
 [ext_resource type="PackedScene" uid="uid://rx2k8x7kuakl" path="res://Scenes/Items/ManaPotion.tscn" id="2_sx7u1"]
 [ext_resource type="PackedScene" uid="uid://ciel6wm3uv1b0" path="res://Scenes/Items/SlimeTeeth.tscn" id="3_75eo7"]
 [ext_resource type="PackedScene" uid="uid://dvh6bqua7e4df" path="res://Scenes/Items/PearlofZeus.tscn" id="4_tlufy"]
@@ -15,8 +16,6 @@ size = Vector2(20, 203)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xtbvx"]
 size = Vector2(186, 20)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_xslb4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8gmk"]
 size = Vector2(144, 145)
@@ -53,10 +52,6 @@ shape = SubResource("RectangleShape2D_p1dhk")
 position = Vector2(1, 91)
 shape = SubResource("RectangleShape2D_xtbvx")
 
-[node name="Sprite2D" type="Sprite2D" parent="Cauldron"]
-scale = Vector2(186, 203)
-texture = SubResource("CanvasTexture_xslb4")
-
 [node name="Area2D" type="Area2D" parent="Cauldron"]
 collision_layer = 4
 collision_mask = 3
@@ -69,6 +64,10 @@ shape = SubResource("RectangleShape2D_q8gmk")
 position = Vector2(0.500015, 6.50002)
 scale = Vector2(0.566406, 145)
 texture = SubResource("CurveTexture_8sncm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Cauldron"]
+scale = Vector2(0.916, 1)
+texture = ExtResource("2_b6lft")
 
 [node name="Recipes" type="Node" parent="Cauldron"]
 script = ExtResource("6_aupei")
@@ -160,10 +159,10 @@ position = Vector2(441, 217)
 [node name="SlimeTeeth6" parent="Items" instance=ExtResource("3_75eo7")]
 
 [node name="SlimeTeeth7" parent="Items" instance=ExtResource("4_tlufy")]
-position = Vector2(532, 166)
+position = Vector2(939, 166)
 
 [node name="HealthPotion" parent="Items" instance=ExtResource("1_nuxuu")]
-position = Vector2(429, 267)
+position = Vector2(272, 448)
 
 [node name="HealthPotion2" parent="Items" instance=ExtResource("1_nuxuu")]
 position = Vector2(366, 81)
@@ -172,13 +171,13 @@ position = Vector2(366, 81)
 position = Vector2(313, 283)
 
 [node name="HealthPotion4" parent="Items" instance=ExtResource("1_nuxuu")]
-position = Vector2(365, 204)
+position = Vector2(470, 390)
 
 [node name="HealthPotion5" parent="Items" instance=ExtResource("1_nuxuu")]
-position = Vector2(333, 142)
+position = Vector2(493, 45)
 
 [node name="HealthPotion6" parent="Items" instance=ExtResource("1_nuxuu")]
-position = Vector2(476, 138)
+position = Vector2(788, 177)
 
 [node name="ManaPotion" parent="Items" instance=ExtResource("2_sx7u1")]
 position = Vector2(412, 147)
