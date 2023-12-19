@@ -8,7 +8,7 @@ extends CharacterBody2D
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var cauldron_content = []
-var recipe = ["pearl","slime"]
+#var recipe = ["pearl","bluecrystal"]
 @onready var Recipes = $Recipes
 
 var potion_delay_timer = 0
