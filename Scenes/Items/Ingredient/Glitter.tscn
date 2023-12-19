@@ -10,7 +10,7 @@ region = Rect2(192, 0, 32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_su10b"]
 size = Vector2(17, 31)
 
-[node name="SlimeTeeth" type="RigidBody2D"]
+[node name="Glitter" type="RigidBody2D"]
 position = Vector2(280, 190)
 collision_mask = 7
 input_pickable = true

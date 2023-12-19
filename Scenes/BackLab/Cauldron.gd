@@ -82,7 +82,7 @@ func StartPotion(potion_index):
 	#make sure potion is tagged as just produced.
 	potion.just_produced()
 	#clears the contents of the cauldron.
-	cauldron_content.clear
+	cauldron_content.clear()
 
 func CheckRecipe(_recipe):
 	#This function returns array of index if _recipe is inside the cauldron and array of size 0 if not.

@@ -1,12 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://dx4qvcu851jd1"]
+[gd_scene load_steps=18 format=3 uid="uid://dx4qvcu851jd1"]
 
 [ext_resource type="Script" path="res://Scenes/BackLab/Cauldron.gd" id="1_j5aqn"]
-[ext_resource type="PackedScene" uid="uid://csy6ji4xjse" path="res://Scenes/Items/Potions/HealthPotion.tscn" id="1_nuxuu"]
 [ext_resource type="Texture2D" uid="uid://b3sx6273kbxbp" path="res://Assets/Sprites/cauldronspritemain.png" id="2_b6lft"]
-[ext_resource type="PackedScene" uid="uid://rx2k8x7kuakl" path="res://Scenes/Items/Potions/ManaPotion.tscn" id="2_sx7u1"]
 [ext_resource type="PackedScene" uid="uid://ciel6wm3uv1b0" path="res://Scenes/Items/Ingredient/SlimeTeeth.tscn" id="3_75eo7"]
 [ext_resource type="PackedScene" uid="uid://dvh6bqua7e4df" path="res://Scenes/Items/Ingredient/PearlofZeus.tscn" id="4_tlufy"]
 [ext_resource type="Script" path="res://Scenes/BackLab/Recipes.gd" id="6_aupei"]
+[ext_resource type="PackedScene" uid="uid://bp2jtwqbr1ti4" path="res://Scenes/Items/Ingredient/BeardOfDwarf.tscn" id="6_chvgp"]
+[ext_resource type="PackedScene" uid="uid://odbu85116l13" path="res://Scenes/Items/Ingredient/BlueCrystal.tscn" id="7_lnni0"]
+[ext_resource type="PackedScene" uid="uid://ctxrlji6s1jbs" path="res://Scenes/Items/Ingredient/Glitter.tscn" id="8_7q1vc"]
+[ext_resource type="PackedScene" uid="uid://cwbh4xtasuhlh" path="res://Scenes/Items/Ingredient/HydrochloricAcid.tscn" id="9_dqgtu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gdbqi"]
 size = Vector2(20, 201)
@@ -112,39 +114,6 @@ position = Vector2(574, 153)
 [node name="PearlOfZeus8" parent="Items" instance=ExtResource("4_tlufy")]
 position = Vector2(574, 153)
 
-[node name="PearlOfZeus9" parent="Items" instance=ExtResource("4_tlufy")]
-position = Vector2(574, 153)
-
-[node name="PearlOfZeus10" parent="Items" instance=ExtResource("4_tlufy")]
-position = Vector2(407, 102)
-
-[node name="PearlOfZeus11" parent="Items" instance=ExtResource("4_tlufy")]
-position = Vector2(407, 102)
-
-[node name="PearlOfZeus12" parent="Items" instance=ExtResource("4_tlufy")]
-position = Vector2(407, 102)
-
-[node name="PearlOfZeus13" parent="Items" instance=ExtResource("4_tlufy")]
-position = Vector2(407, 102)
-
-[node name="ManaPotion2" parent="Items" instance=ExtResource("2_sx7u1")]
-position = Vector2(496, 370)
-
-[node name="ManaPotion3" parent="Items" instance=ExtResource("2_sx7u1")]
-position = Vector2(452, 402)
-
-[node name="ManaPotion4" parent="Items" instance=ExtResource("2_sx7u1")]
-position = Vector2(328, 358)
-
-[node name="ManaPotion5" parent="Items" instance=ExtResource("2_sx7u1")]
-position = Vector2(512, 225)
-
-[node name="ManaPotion6" parent="Items" instance=ExtResource("2_sx7u1")]
-position = Vector2(431, 332)
-
-[node name="ManaPotion7" parent="Items" instance=ExtResource("2_sx7u1")]
-position = Vector2(441, 217)
-
 [node name="SlimeTeeth" parent="Items" instance=ExtResource("3_75eo7")]
 
 [node name="SlimeTeeth2" parent="Items" instance=ExtResource("3_75eo7")]
@@ -158,27 +127,88 @@ position = Vector2(441, 217)
 [node name="SlimeTeeth6" parent="Items" instance=ExtResource("3_75eo7")]
 
 [node name="SlimeTeeth7" parent="Items" instance=ExtResource("4_tlufy")]
-position = Vector2(939, 166)
+position = Vector2(395, 220)
 
-[node name="HealthPotion" parent="Items" instance=ExtResource("1_nuxuu")]
-position = Vector2(272, 448)
+[node name="BeardOfDwarf" parent="Items" instance=ExtResource("6_chvgp")]
+position = Vector2(412, 93)
 
-[node name="HealthPotion2" parent="Items" instance=ExtResource("1_nuxuu")]
-position = Vector2(366, 81)
+[node name="BeardOfDwarf2" parent="Items" instance=ExtResource("6_chvgp")]
+position = Vector2(412, 93)
 
-[node name="HealthPotion3" parent="Items" instance=ExtResource("1_nuxuu")]
-position = Vector2(313, 283)
+[node name="BeardOfDwarf3" parent="Items" instance=ExtResource("6_chvgp")]
+position = Vector2(412, 93)
 
-[node name="HealthPotion4" parent="Items" instance=ExtResource("1_nuxuu")]
-position = Vector2(470, 390)
+[node name="BeardOfDwarf4" parent="Items" instance=ExtResource("6_chvgp")]
+position = Vector2(412, 93)
 
-[node name="HealthPotion5" parent="Items" instance=ExtResource("1_nuxuu")]
-position = Vector2(493, 45)
+[node name="BeardOfDwarf5" parent="Items" instance=ExtResource("6_chvgp")]
+position = Vector2(412, 93)
 
-[node name="HealthPotion6" parent="Items" instance=ExtResource("1_nuxuu")]
-position = Vector2(788, 177)
+[node name="BeardOfDwarf7" parent="Items" instance=ExtResource("6_chvgp")]
 
-[node name="ManaPotion" parent="Items" instance=ExtResource("2_sx7u1")]
-position = Vector2(412, 147)
+[node name="BeardOfDwarf6" parent="Items" instance=ExtResource("6_chvgp")]
+position = Vector2(412, 93)
+
+[node name="BlueCrystal" parent="Items" instance=ExtResource("7_lnni0")]
+position = Vector2(487, 316)
+
+[node name="BlueCrystal2" parent="Items" instance=ExtResource("7_lnni0")]
+position = Vector2(487, 316)
+
+[node name="BlueCrystal3" parent="Items" instance=ExtResource("7_lnni0")]
+position = Vector2(487, 316)
+
+[node name="BlueCrystal4" parent="Items" instance=ExtResource("7_lnni0")]
+position = Vector2(487, 316)
+
+[node name="BlueCrystal5" parent="Items" instance=ExtResource("7_lnni0")]
+position = Vector2(487, 316)
+
+[node name="BlueCrystal6" parent="Items" instance=ExtResource("7_lnni0")]
+position = Vector2(487, 316)
+
+[node name="BlueCrystal7" parent="Items" instance=ExtResource("7_lnni0")]
+position = Vector2(487, 316)
+
+[node name="SlimeTeeth8" parent="Items" instance=ExtResource("8_7q1vc")]
+
+[node name="Glitter" parent="Items" instance=ExtResource("8_7q1vc")]
+position = Vector2(170, 91)
+
+[node name="Glitter2" parent="Items" instance=ExtResource("8_7q1vc")]
+position = Vector2(170, 91)
+
+[node name="Glitter3" parent="Items" instance=ExtResource("8_7q1vc")]
+position = Vector2(170, 91)
+
+[node name="Glitter4" parent="Items" instance=ExtResource("8_7q1vc")]
+position = Vector2(170, 91)
+
+[node name="Glitter5" parent="Items" instance=ExtResource("8_7q1vc")]
+position = Vector2(170, 91)
+
+[node name="Glitter6" parent="Items" instance=ExtResource("8_7q1vc")]
+position = Vector2(170, 91)
+
+[node name="HydrochloricAcid" parent="Items" instance=ExtResource("9_dqgtu")]
+position = Vector2(985, 118)
+
+[node name="HydrochloricAcid2" parent="Items" instance=ExtResource("9_dqgtu")]
+position = Vector2(985, 118)
+
+[node name="HydrochloricAcid3" parent="Items" instance=ExtResource("9_dqgtu")]
+position = Vector2(985, 118)
+
+[node name="HydrochloricAcid4" parent="Items" instance=ExtResource("9_dqgtu")]
+position = Vector2(985, 118)
+
+[node name="HydrochloricAcid5" parent="Items" instance=ExtResource("9_dqgtu")]
+position = Vector2(985, 118)
+
+[node name="HydrochloricAcid6" parent="Items" instance=ExtResource("9_dqgtu")]
+position = Vector2(985, 118)
+
+[node name="HydrochloricAcid7" parent="Items" instance=ExtResource("9_dqgtu")]
+position = Vector2(985, 118)
 
 [connection signal="body_entered" from="Cauldron/Area2D" to="Cauldron" method="_on_area_2d_body_entered"]
