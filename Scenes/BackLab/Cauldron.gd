@@ -75,7 +75,7 @@ func StartPotion(potion_index):
 	#randomly asign an angle to pop out the potion.
 	var angle = randf_range(-PI / 5, PI / 5) - PI/2
 	var aim = Vector2(cos(angle),sin(angle))
-	potion.global_position = position
+	potion.global_position = global_position
 	#potion will poop out of the cauldron.
 	potion.apply_impulse(aim * 900)
 	get_tree().get_root().add_child(potion)
