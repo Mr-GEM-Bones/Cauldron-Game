@@ -1,7 +1,11 @@
 extends RigidBody2D
 
 @export var mouse_drag_scale = 30
+
+@export var ingredient = "A"
+
 var _is_held = false
+var _can_cauldron = true  #makes it able to interact with cauldron.
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,7 +22,7 @@ func _physics_process(delta):
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			print("Mouse clicked at: ", event.position)
+			#print("Mouse clicked at: ", event.position)
 			PickUpItem()
 
 func _input(event):

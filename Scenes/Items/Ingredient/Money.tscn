@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7ernv4mol7qb"]
+
+[ext_resource type="Script" path="res://Scenes/Items/Ingredient.gd" id="1_ltewo"]
+[ext_resource type="Texture2D" uid="uid://bxly3gwxe1pv5" path="res://Assets/Sprites/potiontestingredients.png" id="2_0iqc6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu6we"]
+atlas = ExtResource("2_0iqc6")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xyvtn"]
+radius = 16.0
+
+[node name="SlimeTeeth" type="RigidBody2D"]
+position = Vector2(280, 190)
+collision_mask = 7
+input_pickable = true
+script = ExtResource("1_ltewo")
+ingredient = "money"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_uu6we")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xyvtn")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
