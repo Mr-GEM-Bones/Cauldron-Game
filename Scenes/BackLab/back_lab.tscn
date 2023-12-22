@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dx4qvcu851jd1"]
+[gd_scene load_steps=23 format=3 uid="uid://dx4qvcu851jd1"]
 
 [ext_resource type="Script" path="res://Scenes/BackLab/Backpack.gd" id="1_hudfh"]
 [ext_resource type="Script" path="res://Scenes/BackLab/Cauldron.gd" id="1_j5aqn"]
@@ -24,6 +24,9 @@ size = Vector2(186, 20)
 size = Vector2(144, 145)
 
 [sub_resource type="CurveTexture" id="CurveTexture_8sncm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kpbch"]
+bg_color = Color(0.831373, 0.494118, 0.447059, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dx8qp"]
 size = Vector2(31, 655)
@@ -90,6 +93,14 @@ texture = ExtResource("2_b6lft")
 
 [node name="Recipes" type="Node" parent="Backpack/Cauldron"]
 script = ExtResource("6_aupei")
+
+[node name="ProgressBar" type="ProgressBar" parent="Backpack/Cauldron"]
+visible = false
+offset_left = -95.0
+offset_right = 97.0
+offset_bottom = 27.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_kpbch")
+max_value = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Backpack"]
 position = Vector2(5.5, 317.5)
