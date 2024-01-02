@@ -1,6 +1,7 @@
 extends "res://Scenes/Items/Item.gd"
 
 var _just_produced_timer = 4.0
+@export var brew_time = 5.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -11,40 +11,36 @@ var cauldron_content = []
 #var recipe = ["pearl","bluecrystal"]
 @onready var Recipes = $Recipes
 
+var potion				#Holds the instantiated potion before adding it to the tree. Make sure to free it before instantiating a new one.
+var current_potion_brew
 var potion_delay_timer = 0
 var potion_start_time = 1
+var is_brewing = false
+var potion_brewing_timer = 0		#Current Brew time.
+var brew_time		#Set time for brew to be done. 
 
 func _ready():
 	pass#Recipes = $Recipes
 
 func _process(delta):
+	##Timer to check the contents of the cauldron.
+	#if potion_delay_timer>=potion_start_time:
+		#CheckContents()
+		#potion_delay_timer = 0 
+	#else: 
+		#potion_delay_timer += delta
+		##$ProgressBar.value = potion_delay_timer
 	
-	if potion_delay_timer>=potion_start_time:
-		CheckContents()
-		potion_delay_timer = 0 
-	else: 
-		potion_delay_timer += delta
-	
+	#Timer for brewing potion.
+	if is_brewing:
+		if potion_brewing_timer>=brew_time:
+			#Potion is done, create it.
+			potion_brewing_timer=0
+			StartPotion()
+		else:
+			potion_brewing_timer+=delta
+			$ProgressBar.value = potion_brewing_timer
 
-func _physics_process(delta):
-	pass
-#	# Add the gravity.
-#	if not is_on_floor():
-#		velocity.y += gravity * delta
-#
-#	# Handle Jump.
-#	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-#		velocity.y = JUMP_VELOCITY
-#
-#	# Get the input direction and handle the movement/deceleration.
-#	# As good practice, you should replace UI actions with custom gameplay actions.
-#	var direction = Input.get_axis("ui_left", "ui_right")
-#	if direction:
-#		velocity.x = direction * SPEED
-#	else:
-#		velocity.x = move_toward(velocity.x, 0, SPEED)
-#	
-#	move_and_slide()
 
 
 func _on_area_2d_body_entered(body):
@@ -55,8 +51,9 @@ func _on_area_2d_body_entered(body):
 		#make ingredient disapear.
 		body.queue_free()
 		#reset timer
-		potion_delay_timer = 0
+		#potion_delay_timer = 0
 		print(cauldron_content)
+		CheckContents()
 
 func CheckContents():
 	#Start recipe Check
@@ -64,13 +61,27 @@ func CheckContents():
 		var recipe_index = CheckRecipe(Recipes.get_recipe(r_index))
 		#Check if a recepi has been found.
 		if recipe_index.size() != 0:
-			#proceed to produce recipe.
-			print("index: ", recipe_index, "potion: ", r_index)
-			StartPotion(r_index)
+			if is_brewing and r_index == current_potion_brew:
+				pass
+			else:
+				#proceed to produce recipe.
+				print("index: ", recipe_index, "potion: ", r_index)
+				current_potion_brew = r_index
+				SetupPotion(r_index)
+				break
 
-func StartPotion(potion_index):
-	var _potion = load(Recipes._potions[potion_index])
-	var potion = _potion.instantiate()
+func SetupPotion(potion_index):
+	#This function sets up all the function data for the potion.
+	if potion:				#Makes sure that the variable is free before instantiating a potion.
+		potion.queue_free()
+	potion = load(Recipes._potions[potion_index]).instantiate()
+	potion_brewing_timer=0
+	brew_time = potion.brew_time
+	$ProgressBar.max_value = brew_time
+	$ProgressBar.visible = true
+	is_brewing = true
+
+func StartPotion():
 	
 	#randomly asign an angle to pop out the potion.
 	var angle = randf_range(-PI / 5, PI / 5) - PI/2
@@ -81,8 +92,11 @@ func StartPotion(potion_index):
 	get_tree().get_root().add_child(potion)
 	#make sure potion is tagged as just produced.
 	potion.just_produced()
+	potion = null		#Release the variable.
 	#clears the contents of the cauldron.
 	cauldron_content.clear()
+	$ProgressBar.visible = false
+	is_brewing = false
 
 func CheckRecipe(_recipe):
 	#This function returns array of index if _recipe is inside the cauldron and array of size 0 if not.
