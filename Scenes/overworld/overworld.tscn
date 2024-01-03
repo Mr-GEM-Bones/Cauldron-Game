@@ -1,8 +1,120 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0wn8n02paano"]
+[gd_scene load_steps=14 format=3 uid="uid://d0wn8n02paano"]
 
 [ext_resource type="Script" path="res://Scenes/overworld/overworld.gd" id="1_3jlej"]
-[ext_resource type="Texture2D" uid="uid://dfpttwf2n7ocy" path="res://Scenes/overworld/assets/temp_background.png" id="1_m3l8x"]
+[ext_resource type="Texture2D" uid="uid://b3sj5d6ry3hg0" path="res://Scenes/overworld/assets/scrollingbackground.png" id="2_ih614"]
 [ext_resource type="PackedScene" uid="uid://nokuyq8rvsc6" path="res://entities/wizard/wizard.tscn" id="3_58bl2"]
+[ext_resource type="PackedScene" uid="uid://c5ahokv50m752" path="res://entities/thrown/thrown_potion.tscn" id="4_epm0r"]
+[ext_resource type="PackedScene" uid="uid://br4y5vk362mc4" path="res://entities/enemy/enemy.tscn" id="5_yl8s0"]
+
+[sub_resource type="Curve2D" id="Curve2D_ftfri"]
+bake_interval = 80.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -4, 10, -272.357, 0.943874, 272.357, -0.943874, 420, -90, 0, 0, 0, 0, 820, 10)
+}
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_2qnr1"]
+resource_name = "potion_throw"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PathFollow2D/ThrownPotion:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, -0.5),
+"update": 0,
+"values": [0.0, 6.98132]
+}
+
+[sub_resource type="Animation" id="Animation_i6fsv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PathFollow2D/ThrownPotion:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0kowt"]
+_data = {
+"RESET": SubResource("Animation_i6fsv"),
+"potion_throw": SubResource("Animation_2qnr1")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_3hn8q"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 278, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_lepx1"]
+resource_name = "enemy_animation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemyPathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_5fbgw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemyPathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oexum"]
+_data = {
+"RESET": SubResource("Animation_5fbgw"),
+"enemy_animation": SubResource("Animation_lepx1")
+}
 
 [node name="Overworld" type="Node"]
 script = ExtResource("1_3jlej")
@@ -12,10 +124,64 @@ script = ExtResource("1_3jlej")
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(1, 0)
 motion_mirroring = Vector2(1024, 0)
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(512, 128)
-texture = ExtResource("1_m3l8x")
+texture = ExtResource("2_ih614")
+metadata/_edit_lock_ = true
 
 [node name="Wizard" parent="." instance=ExtResource("3_58bl2")]
 position = Vector2(162, 217)
+scale = Vector2(0.9, 0.9)
+metadata/_edit_lock_ = true
+
+[node name="Path2D" type="Path2D" parent="Wizard"]
+position = Vector2(-61.0474, -100)
+scale = Vector2(0.94957, 1)
+curve = SubResource("Curve2D_ftfri")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Wizard/Path2D"]
+position = Vector2(-4, 10)
+rotation = -0.231616
+scale = Vector2(1, 1)
+loop = false
+
+[node name="ThrownPotion" parent="Wizard/Path2D/PathFollow2D" instance=ExtResource("4_epm0r")]
+visible = false
+position = Vector2(6.1887, -8.81476)
+scale = Vector2(1, 1)
+
+[node name="PotionAnimation" type="AnimationPlayer" parent="Wizard"]
+root_node = NodePath("../Path2D")
+libraries = {
+"": SubResource("AnimationLibrary_0kowt")
+}
+
+[node name="EnemyPath" type="Path2D" parent="."]
+position = Vector2(845, 217)
+curve = SubResource("Curve2D_3hn8q")
+metadata/_edit_lock_ = true
+
+[node name="EnemyPathFollow" type="PathFollow2D" parent="EnemyPath"]
+position = Vector2(278, 0)
+rotation = 3.14159
+rotates = false
+loop = false
+
+[node name="Enemy" parent="EnemyPath/EnemyPathFollow" instance=ExtResource("5_yl8s0")]
+rotation = 3.14159
+
+[node name="EnemyAnimation" type="AnimationPlayer" parent="EnemyPath"]
+libraries = {
+"": SubResource("AnimationLibrary_oexum")
+}
+
+[node name="EnemyTimer" type="Timer" parent="."]
+wait_time = 6.0
+autostart = true
+
+[connection signal="sig_end_combat" from="Wizard" to="." method="_on_wizard_sig_end_combat"]
+[connection signal="animation_finished" from="Wizard/PotionAnimation" to="Wizard" method="_on_potion_animation_animation_finished"]
+[connection signal="animation_finished" from="EnemyPath/EnemyAnimation" to="." method="_on_enemy_animation_animation_finished"]
+[connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]

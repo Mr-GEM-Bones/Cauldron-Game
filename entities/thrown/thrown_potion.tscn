@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5ahokv50m752"]
+
+[ext_resource type="Texture2D" uid="uid://d3iayqay2dm4m" path="res://entities/thrown/assets/potiontesttemplate.png" id="1_7gobb"]
+
+[node name="ThrownPotion" type="Node2D"]
+
+[node name="TempPotion" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_7gobb")

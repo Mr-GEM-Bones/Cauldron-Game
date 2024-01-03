@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://br4y5vk362mc4"]
+
+[ext_resource type="Script" path="res://entities/enemy/enemy.gd" id="1_adqxc"]
+[ext_resource type="Texture2D" uid="uid://u6h2b5q0ap2l" path="res://entities/enemy/assets/sillylilguy.png" id="1_g1o2v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0bpm"]
+atlas = ExtResource("1_g1o2v")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j53ck"]
+atlas = ExtResource("1_g1o2v")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgowr"]
+atlas = ExtResource("1_g1o2v")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4f4q"]
+atlas = ExtResource("1_g1o2v")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fff4m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0bpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j53ck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgowr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4f4q")
+}],
+"loop": true,
+"name": &"slime",
+"speed": 6.0
+}]
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_adqxc")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -64)
+sprite_frames = SubResource("SpriteFrames_fff4m")
+animation = &"slime"
