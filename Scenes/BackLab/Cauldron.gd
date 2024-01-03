@@ -89,7 +89,7 @@ func StartPotion():
 	potion.global_position = global_position
 	#potion will poop out of the cauldron.
 	potion.apply_impulse(aim * 900)
-	get_tree().get_root().add_child(potion)
+	get_parent().get_parent().add_child(potion)
 	#make sure potion is tagged as just produced.
 	potion.just_produced()
 	potion = null		#Release the variable.
