@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dx4qvcu851jd1"]
+[gd_scene load_steps=24 format=3 uid="uid://dx4qvcu851jd1"]
 
 [ext_resource type="Script" path="res://Scenes/BackLab/Backpack.gd" id="1_hudfh"]
 [ext_resource type="Script" path="res://Scenes/BackLab/Cauldron.gd" id="1_j5aqn"]
@@ -27,6 +27,12 @@ size = Vector2(144, 145)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kpbch"]
 bg_color = Color(0.831373, 0.494118, 0.447059, 1)
+
+[sub_resource type="Curve2D" id="Curve2D_exiy6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, -405, 0, 0, 0, 0, 100, -405)
+}
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dx8qp"]
 size = Vector2(31, 655)
@@ -101,6 +107,12 @@ offset_right = 97.0
 offset_bottom = 27.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_kpbch")
 max_value = 1.0
+
+[node name="SpawnItem" type="Path2D" parent="Backpack/Cauldron"]
+curve = SubResource("Curve2D_exiy6")
+
+[node name="SpawnLocation" type="PathFollow2D" parent="Backpack/Cauldron/SpawnItem"]
+position = Vector2(-180, -405)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Backpack"]
 position = Vector2(5.5, 317.5)

@@ -8,7 +8,6 @@ extends CharacterBody2D
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var cauldron_content = []
-#var recipe = ["pearl","bluecrystal"]
 @onready var Recipes = $Recipes
 
 var potion				#Holds the instantiated potion before adding it to the tree. Make sure to free it before instantiating a new one.
@@ -18,6 +17,10 @@ var potion_start_time = 1
 var is_brewing = false
 var potion_brewing_timer = 0		#Current Brew time.
 var brew_time		#Set time for brew to be done. 
+
+#DELETE
+var spawn_ingredient_timer = 0
+var spawn_ingredient_time = 1
 
 func _ready():
 	pass#Recipes = $Recipes
@@ -31,6 +34,15 @@ func _process(delta):
 		#potion_delay_timer += delta
 		##$ProgressBar.value = potion_delay_timer
 	
+	#REMOVE! For testing, spawns randomingredients.
+	if spawn_ingredient_timer >= spawn_ingredient_time:
+		var size = Recipes._ingredients.size()
+		var ing_key = Recipes._ingredients.keys()[randi() % size]
+		SpawnIngredient(ing_key)
+		spawn_ingredient_timer = 0
+	else:
+		spawn_ingredient_timer += delta
+	
 	#Timer for brewing potion.
 	if is_brewing:
 		if potion_brewing_timer>=brew_time:
@@ -41,7 +53,28 @@ func _process(delta):
 			potion_brewing_timer+=delta
 			$ProgressBar.value = potion_brewing_timer
 
-
+func SpawnIngredient(ing):
+	#instantiate
+	var ingredient = load(Recipes._ingredients[ing]).instantiate()
+	
+	#get random location in path.
+	var spawnlocation = get_node("SpawnItem/SpawnLocation")
+	spawnlocation.progress_ratio = randf()
+	
+	#set direction to be perpendicular.
+	var direction = spawnlocation.rotation + PI / 2
+	
+	#Set ingredient position.
+	ingredient.position = spawnlocation.position
+	
+	#add randomness to the direction
+	direction += randf_range(-PI / 3, PI / 3)
+	
+	#velocity
+	var velocity = Vector2(300.0,0.0)
+	ingredient.linear_velocity = velocity.rotated(direction)
+	add_child(ingredient)
+	ingredient.just_produced()
 
 func _on_area_2d_body_entered(body):
 	#checks if the item can be used in the Cauldron. (newly produced potions should not.)
