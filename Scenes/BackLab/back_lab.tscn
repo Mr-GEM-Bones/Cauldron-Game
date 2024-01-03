@@ -128,7 +128,7 @@ position = Vector2(914, 387.5)
 shape = SubResource("RectangleShape2D_ijo7e")
 
 [node name="Camera2D" type="Camera2D" parent="Backpack"]
-position = Vector2(517, 323)
+position = Vector2(510, 327)
 ignore_rotation = false
 
 [node name="Items" type="Node" parent="."]
