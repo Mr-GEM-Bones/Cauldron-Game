@@ -23,7 +23,7 @@ func _physics_process(delta):
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			print("Mouse clicked at: ", event.position)
+			#print("Mouse clicked at: ", event.position)
 			PickUpItem()
 
 func _input(event):
@@ -33,6 +33,7 @@ func _input(event):
 func PickUpItem():
 	#this function changes everything that needs to change when an item is picked up.
 	_is_held = true
+	print(collision_layer)
 
 func DropItem():
 	#This function changes everything that needs to change when an item is released.

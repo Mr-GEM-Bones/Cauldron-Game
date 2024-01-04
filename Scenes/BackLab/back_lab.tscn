@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dx4qvcu851jd1"]
+[gd_scene load_steps=27 format=3 uid="uid://dx4qvcu851jd1"]
 
 [ext_resource type="Script" path="res://Scenes/BackLab/Backpack.gd" id="1_hudfh"]
 [ext_resource type="Script" path="res://Scenes/BackLab/Cauldron.gd" id="1_j5aqn"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://odbu85116l13" path="res://Scenes/Items/Ingredient/BlueCrystal.tscn" id="7_lnni0"]
 [ext_resource type="PackedScene" uid="uid://ctxrlji6s1jbs" path="res://Scenes/Items/Ingredient/Glitter.tscn" id="8_7q1vc"]
 [ext_resource type="PackedScene" uid="uid://cwbh4xtasuhlh" path="res://Scenes/Items/Ingredient/HydrochloricAcid.tscn" id="9_dqgtu"]
+[ext_resource type="PackedScene" uid="uid://c8snr1pfvpclc" path="res://Scenes/Items/Potions/PoisonPotion.tscn" id="11_dx3lv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gdbqi"]
 size = Vector2(20, 201)
@@ -52,10 +53,14 @@ size = Vector2(292, 27.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijo7e"]
 size = Vector2(256, 23)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvthu"]
+size = Vector2(336, 48)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_w41iw"]
+
 [node name="BackLab" type="Node2D"]
 
 [node name="Backpack" type="CharacterBody2D" parent="."]
-collision_layer = 7
 collision_mask = 0
 motion_mode = 1
 floor_stop_on_slope = false
@@ -142,6 +147,22 @@ shape = SubResource("RectangleShape2D_ijo7e")
 [node name="Camera2D" type="Camera2D" parent="Backpack"]
 position = Vector2(510, 327)
 ignore_rotation = false
+
+[node name="ExitArea" type="Area2D" parent="Backpack"]
+position = Vector2(464, 40)
+collision_layer = 128
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Backpack/ExitArea"]
+shape = SubResource("RectangleShape2D_dvthu")
+
+[node name="ExitShade" type="Sprite2D" parent="Backpack/ExitArea"]
+modulate = Color(1, 0.776471, 1, 1)
+z_index = -20
+position = Vector2(-1.04904e-05, -2.26498e-06)
+scale = Vector2(336, 48)
+texture = SubResource("CanvasTexture_w41iw")
 
 [node name="Items" type="Node" parent="."]
 
@@ -273,4 +294,9 @@ position = Vector2(985, 118)
 [node name="HydrochloricAcid7" parent="Items" instance=ExtResource("9_dqgtu")]
 position = Vector2(985, 118)
 
+[node name="PoisonPotion" parent="Items" instance=ExtResource("11_dx3lv")]
+position = Vector2(88, 160)
+
 [connection signal="body_entered" from="Backpack/Cauldron/Area2D" to="Backpack/Cauldron" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Backpack/ExitArea" to="Backpack" method="_on_exit_area_body_entered"]
+[connection signal="body_exited" from="Backpack/ExitArea" to="Backpack" method="_on_exit_area_body_exited"]

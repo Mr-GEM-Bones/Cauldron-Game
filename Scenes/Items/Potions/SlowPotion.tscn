@@ -14,7 +14,6 @@ atlas = ExtResource("2_76656")
 region = Rect2(1024, 0, 128, 128)
 
 [node name="SlowPotion" type="RigidBody2D"]
-collision_layer = 2
 collision_mask = 7
 input_pickable = true
 script = ExtResource("1_bade1")
