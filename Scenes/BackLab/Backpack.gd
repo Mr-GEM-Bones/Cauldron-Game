@@ -7,6 +7,8 @@ var _is_bumped
 var _move_velocity
 var _force = 0
 
+signal potion_dropped_in_area(body)
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -41,3 +43,21 @@ func bump(force):
 	_force = force
 	_is_bumped = true
 	
+
+
+func _on_exit_area_body_entered(body):
+	if body.collision_layer == 2:
+		# Connect the potion's signal to the area's signal
+		body.connect("potion_dropped",_on_potion_dropped_in_area)
+
+func _on_exit_area_body_exited(body):
+	# Disconnect the potion's signal when it exits the area
+	body.disconnect("potion_dropped", _on_potion_dropped_in_area)
+
+func _on_potion_dropped_in_area(body):
+	# This function will be called when the potion is dropped in the area
+	emit_signal("potion_dropped_in_area", body)
+	print(body.ingredient)
+	body.queue_free()		#TODO: this should be called somewhere else or not.
+
+

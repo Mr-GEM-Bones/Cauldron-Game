@@ -12,6 +12,16 @@ var _recipes = {
 	"mana":["glitter","bluecrystal"]
 }
 
+var _ingredients = {
+	"beard":"res://Scenes/Items/Ingredient/BeardOfDwarf.tscn",
+	"bluecrystal":"res://Scenes/Items/Ingredient/BlueCrystal.tscn",
+	"glitter":"res://Scenes/Items/Ingredient/Glitter.tscn",
+	"acid":"res://Scenes/Items/Ingredient/HydrochloricAcid.tscn",
+	"money":"res://Scenes/Items/Ingredient/Money.tscn",
+	"pearl":"res://Scenes/Items/Ingredient/PearlofZeus.tscn",
+	"slime":"res://Scenes/Items/Ingredient/SlimeTeeth.tscn"
+}
+
 var _potions = {
 	"health":"res://Scenes/Items/Potions/HealthPotion.tscn",
 	"harvest":"res://Scenes/Items/Potions/HarvestPotion.tscn",

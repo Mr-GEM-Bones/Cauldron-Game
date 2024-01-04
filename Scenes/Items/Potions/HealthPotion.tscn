@@ -11,7 +11,6 @@ atlas = ExtResource("2_iksif")
 region = Rect2(0, 0, 128, 128)
 
 [node name="HealthPotion" type="RigidBody2D"]
-collision_layer = 2
 collision_mask = 7
 input_pickable = true
 script = ExtResource("1_fp28v")

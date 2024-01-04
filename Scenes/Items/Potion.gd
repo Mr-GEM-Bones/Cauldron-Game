@@ -1,7 +1,9 @@
 extends "res://Scenes/Items/Item.gd"
 
-var _just_produced_timer = 4.0
+
 @export var brew_time = 5.0
+
+signal potion_dropped(body)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,16 +14,18 @@ func _ready():
 func _process(delta):
 	pass
 
+func PickUpItem():
+	super.PickUpItem()
+	
+	#change collision layer
+	collision_layer = 2
+	
+func DropItem():
+	super.DropItem()
+	
+	#Change collision layer back
+	collision_layer = 1
+	#emit signal to announce that the potion is dropped.
+	emit_signal("potion_dropped",self)
 
-func just_produced():
-	#this function makes sure that the potion does not interact with the cauldron.
-	_can_cauldron = false
-	collision_mask = 3
-	await get_tree().create_timer(_just_produced_timer).timeout
-	available()
 
-func available():
-	#this function sets everything to available when the potion can interact.
-	#TODO optional, if the player catches the potion in the air, it can interact with cauldron, so run this.
-	_can_cauldron = true
-	collision_mask = 7

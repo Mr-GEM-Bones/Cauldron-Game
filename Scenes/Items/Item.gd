@@ -3,6 +3,7 @@ extends RigidBody2D
 @export var mouse_drag_scale = 30
 
 @export var ingredient = "A"
+var _just_produced_timer = 4.0
 
 var _is_held = false
 var _can_cauldron = true  #makes it able to interact with cauldron.
@@ -32,6 +33,7 @@ func _input(event):
 func PickUpItem():
 	#this function changes everything that needs to change when an item is picked up.
 	_is_held = true
+	print(collision_layer)
 
 func DropItem():
 	#This function changes everything that needs to change when an item is released.
@@ -45,3 +47,16 @@ func _integrate_forces(state):
 #		state.linear_velocity *= mouse_drag_scale 
 		state.apply_central_impulse(mouse_drag_scale*(get_global_mouse_position()-global_position)-state.linear_velocity)
 		#print("Velocity: ", linearvelocity)
+
+func just_produced():
+	#this function makes sure that the potion does not interact with the cauldron.
+	_can_cauldron = false
+	collision_mask = 3
+	await get_tree().create_timer(_just_produced_timer).timeout
+	available()
+
+func available():
+	#this function sets everything to available when the potion can interact.
+	#TODO optional, if the player catches the potion in the air, it can interact with cauldron, so run this.
+	_can_cauldron = true
+	collision_mask = 7

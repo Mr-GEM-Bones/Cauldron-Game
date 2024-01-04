@@ -14,7 +14,6 @@ atlas = ExtResource("2_4kjwe")
 region = Rect2(768, 0, 128, 128)
 
 [node name="PoisonPotion" type="RigidBody2D"]
-collision_layer = 2
 collision_mask = 7
 input_pickable = true
 script = ExtResource("1_o7350")
