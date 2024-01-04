@@ -7,7 +7,7 @@ var _is_bumped
 var _move_velocity
 var _force = 0
 
-signal potion_dropped_in_area(body)
+#signal potion_dropped_in_area(body)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -56,7 +56,8 @@ func _on_exit_area_body_exited(body):
 
 func _on_potion_dropped_in_area(body):
 	# This function will be called when the potion is dropped in the area
-	emit_signal("potion_dropped_in_area", body)
+	#emit_signal("potion_dropped_in_area", body)
+	get_parent().potion_dropped_in_area.emit(body)
 	print(body.ingredient)
 	body.queue_free()		#TODO: this should be called somewhere else or not.
 

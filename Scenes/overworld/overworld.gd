@@ -65,3 +65,8 @@ func _on_wizard_sig_end_combat():
 	end_combat()
 
 #GEM 01/04/2024
+
+
+func Potion_Used(body):
+	print(body.ingredient)
+	potion()

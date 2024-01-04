@@ -1,5 +1,6 @@
-[gd_scene load_steps=27 format=3 uid="uid://dx4qvcu851jd1"]
+[gd_scene load_steps=28 format=3 uid="uid://dx4qvcu851jd1"]
 
+[ext_resource type="Script" path="res://Scenes/BackLab/back_lab.gd" id="1_ao563"]
 [ext_resource type="Script" path="res://Scenes/BackLab/Backpack.gd" id="1_hudfh"]
 [ext_resource type="Script" path="res://Scenes/BackLab/Cauldron.gd" id="1_j5aqn"]
 [ext_resource type="Texture2D" uid="uid://b3sx6273kbxbp" path="res://Assets/Sprites/cauldronspritemain.png" id="2_b6lft"]
@@ -59,6 +60,7 @@ size = Vector2(336, 48)
 [sub_resource type="CanvasTexture" id="CanvasTexture_w41iw"]
 
 [node name="BackLab" type="Node2D"]
+script = ExtResource("1_ao563")
 
 [node name="Backpack" type="CharacterBody2D" parent="."]
 collision_mask = 0
@@ -149,7 +151,7 @@ position = Vector2(510, 327)
 ignore_rotation = false
 
 [node name="ExitArea" type="Area2D" parent="Backpack"]
-position = Vector2(464, 40)
+position = Vector2(464, 64)
 collision_layer = 128
 collision_mask = 2
 metadata/_edit_group_ = true
